@@ -1,6 +1,7 @@
 package com.github.framework.sensitive.core.util.strategy;
 
 import com.github.houbb.heaven.constant.PunctuationConst;
+import com.github.houbb.heaven.util.lang.ObjectUtil;
 import com.github.houbb.heaven.util.lang.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,32 +29,89 @@ public final class SensitiveStrategyUtils {
      * @return 结果
      */
     public static String phone(final String phone) {
+        if (ObjectUtil.isNull(phone)) {
+            return null;
+        }
+        final StringBuilder stringBuffer = new StringBuilder();
+        int length = phone.length();
         final int prefixLength = 3;
         final String middle = "****";
-        return StringUtil.buildString(phone, middle, prefixLength);
+        String prefix = "";
+        String suffix = "";
+        if (length < 3) {
+            return "";
+        }
+        if (length < 7 && length > 2) {
+            prefix = StringUtils.substring(phone, 0, 1);
+            suffix = StringUtils.substring(phone, -3);
+        }
+        if (length >= 7) {
+            prefix = StringUtils.substring(phone, 0, 3);
+            suffix = StringUtils.substring(phone, -3);
+        }
+        stringBuffer.append(prefix);
+        stringBuffer.append(middle);
+        stringBuffer.append(suffix);
+        return stringBuffer.toString();
     }
+
+//    public static String phone(final String phone) {
+//        final int prefixLength = 3;
+//        final String middle = "****";
+//        return StringUtil.buildString(phone, middle, prefixLength);
+//    }
 
     /**
      * 脱敏邮箱
      * @param email 邮箱
      * @return 结果
      */
+//    public static String email(final String email) {
+//        if (StringUtil.isEmpty(email)) {
+//            return null;
+//        }
+//
+//        final int prefixLength = 3;
+//
+//        final int atIndex = email.indexOf(PunctuationConst.AT);
+//        String middle = "****";
+//
+//        if (atIndex > 0) {
+//            final int middleLength = atIndex - prefixLength;
+//            middle = StringUtil.repeat(PunctuationConst.STAR, middleLength);
+//        }
+//        return StringUtil.buildString(email, middle, prefixLength);
+//    }
+
+    /**
+     * 脱敏邮箱
+     *
+     * @param email 邮箱
+     * @return 结果
+     */
     public static String email(final String email) {
-        if (StringUtil.isEmpty(email)) {
+        if (StringUtils.isEmpty(email)) {
             return null;
         }
 
-        final int prefixLength = 3;
-
         final int atIndex = email.indexOf(PunctuationConst.AT);
         String middle = "****";
+        final StringBuilder stringBuffer = new StringBuilder();
 
-        if (atIndex > 0) {
-            final int middleLength = atIndex - prefixLength;
-            middle = StringUtil.repeat(PunctuationConst.STAR, middleLength);
+        String emailSuffix = StringUtils.substringAfter(email, PunctuationConst.AT);
+        int length = emailSuffix.length();
+        if (atIndex < 5) {
+            stringBuffer.append(email, 0, 1);
+        } else {
+            stringBuffer.append(email, 0, Math.min(atIndex, 4));
         }
-        return StringUtil.buildString(email, middle, prefixLength);
+        stringBuffer.append(middle);
+        stringBuffer.append(PunctuationConst.AT);
+        stringBuffer.append(emailSuffix);
+        return stringBuffer.toString();
+
     }
+
 
     /**
      * 脱敏中文名称
