@@ -12,7 +12,7 @@ public class BeanUtilTest {
     public void deepCopyTest() {
         final UserGroup userGroup = DataPrepareTest.buildUserGroup();
         final UserGroup copyUserGroup = BeanUtil.deepCopy(userGroup);
-
+        System.out.println("******"+userGroup.toString());
         Assert.assertEquals(copyUserGroup.toString(), userGroup.toString());
     }
 

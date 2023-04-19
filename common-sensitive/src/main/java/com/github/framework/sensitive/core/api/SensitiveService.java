@@ -13,7 +13,6 @@ import com.github.framework.sensitive.api.impl.SensitiveStrategyBuiltIn;
 import com.github.framework.sensitive.core.api.context.SensitiveContext;
 import com.github.framework.sensitive.core.exception.SensitiveRuntimeException;
 import com.github.framework.sensitive.core.support.filter.DefaultContextValueFilter;
-import com.github.framework.sensitive.core.util.BeanUtil;
 import com.github.framework.sensitive.core.util.strategy.SensitiveStrategyBuiltInUtils;
 import com.github.houbb.heaven.annotation.ThreadSafe;
 import com.github.houbb.heaven.util.lang.ObjectUtil;
@@ -38,19 +37,32 @@ import java.util.List;
 @ThreadSafe
 public class SensitiveService<T> implements ISensitive<T> {
 
+//    @Override
+//    @Deprecated 不支持泛型
+//    @SuppressWarnings({"unchecked", "rawtypes"})
+//    public T desCopy(T object) {
+//        //1. 初始化对象
+//        final Class clazz = object.getClass();
+//        final SensitiveContext context = new SensitiveContext();
+//
+//        //2. 深度复制对象
+//        final T copyObject = BeanUtil.deepCopy(object);
+//
+//        //3. 处理
+//        handleClassField(context, copyObject, clazz);
+//        return copyObject;
+//    }
+
+
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
     public T desCopy(T object) {
-        //1. 初始化对象
-        final Class clazz = object.getClass();
+        if(ObjectUtil.isNull(object)) {
+            return object;
+        }
         final SensitiveContext context = new SensitiveContext();
-
-        //2. 深度复制对象
-        final T copyObject = BeanUtil.deepCopy(object);
-
-        //3. 处理
-        handleClassField(context, copyObject, clazz);
-        return copyObject;
+        ContextValueFilter filter = new DefaultContextValueFilter(context);
+        String text =  JSON.toJSONString(object, filter);
+        return (T) JSON.parseObject(text,object.getClass());
     }
 
     @Override

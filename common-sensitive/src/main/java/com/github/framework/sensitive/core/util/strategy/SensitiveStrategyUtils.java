@@ -20,7 +20,7 @@ public final class SensitiveStrategyUtils {
      * @return 结果
      */
     public static String password(final String password) {
-        return null;
+        return "******";
     }
 
     /**

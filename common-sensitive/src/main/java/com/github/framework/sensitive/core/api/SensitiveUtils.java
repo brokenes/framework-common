@@ -11,7 +11,6 @@ public final class SensitiveUtils {
 
     /**
      * 脱敏对象
-     *
      * 每次都创建一个新的对象，避免线程问题
      * 可以使用 {@link ThreadLocal} 简单优化。
      * @param object 原始对象
@@ -24,6 +23,8 @@ public final class SensitiveUtils {
         return (T) Instances.singletion(SensitiveService.class)
                 .desCopy(object);
     }
+
+
 
     /**
      * 返回脱敏后的对象 json
