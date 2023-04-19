@@ -1,16 +1,8 @@
-/**   
- * @Title: Locales.java 
- * @Package com.welllink.framework.common.lang 
- * @Description: 常用Locale常量
- * @author vanlin
- * @date 2019年10月14日 下午8:32:36  
- */
 package com.github.framework.core.i18n;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 
 /***
  * 常用Locale常量
@@ -28,7 +20,7 @@ public class Locales {
 
     public static final Locale en_US = new Locale("en", "US");
 
-    private static final Map<String, Locale> localeMap = new HashMap<>();
+    private static final Map<String, Locale> localeMap = new HashMap<String, Locale>();
     static {
         localeMap.put("zh_HK", zh_HK);
         localeMap.put("zh_CN", zh_CN);
@@ -39,14 +31,14 @@ public class Locales {
 
     public static Locale parse(final String localeStr) {
         final Locale locale = localeMap.get(localeStr);
-        if (Objects.nonNull(locale)) {
+        if (locale != null) {
             return locale;
         } else {
             final String[] localeStrs = localeStr.split("_");
             if (localeStrs.length == 2) {
                 return new Locale(localeStrs[0], localeStrs[1]);
             }
-            return null;
+            return locale;
         }
     }
 }

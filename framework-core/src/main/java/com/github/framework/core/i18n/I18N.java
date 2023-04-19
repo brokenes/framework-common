@@ -1,10 +1,3 @@
-/**   
- * @Title: I18N.java 
- * @Package com.welllink.framework.common.i18n 
- * @Description: 多语言处理
- * @author vanlin
- * @date 2019年10月16日 下午7:39:22  
- */
 package com.github.framework.core.i18n;
 
 import com.github.framework.core.spring.SpringContextUtils;
