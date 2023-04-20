@@ -27,9 +27,6 @@ import java.util.jar.JarFile;
  * @ClassName Reflects
  * @Description 反射工具类提供调用getter/setter方法, 访问私有变量, 调用私有方法, 获取泛型类型Class,
  *              被AOP过的真实类等工具函数.
- * @author henryzhou
- * @author Sam
- * @Date 2019/3/18 14:12
  */
 public class Reflects {
     /**
