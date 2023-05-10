@@ -1,5 +1,6 @@
 package com.github.framework.core.exception;
 
+import com.github.framework.core.ErrorMessage;
 import com.github.framework.core.lang.CustomStringUtils;
 
 import java.io.PrintWriter;
@@ -16,6 +17,19 @@ public class Ex {
      * @return
      */
     public static BusinessException business(String code,String msg,Object...params) {
+        return new BusinessException(code,buildMessage(msg,params));
+    }
+
+
+    /**
+     * 创建一个业务异常
+     * @param errorMessage
+     * @return
+     */
+    public static BusinessException business(ErrorMessage errorMessage) {
+        String code = errorMessage.getCode();
+        String msg = errorMessage.getMessage();
+        String params = errorMessage.getErrorDetail();
         return new BusinessException(code,buildMessage(msg,params));
     }
 
@@ -76,8 +90,6 @@ public class Ex {
      * @param throwable
      * @return
      * @throws
-     * @author vanlin
-     * @date 2019年3月7日 下午2:35:03
      */
     public static String getStackTraceAsString(final Throwable throwable) {
         if (throwable == null) {
@@ -96,8 +108,6 @@ public class Ex {
      * @param causeExceptionClasses
      * @return
      * @throws
-     * @author vanlin
-     * @date 2019年3月7日 下午2:34:34
      */
     @SuppressWarnings("unchecked")
     public static boolean isCausedBy(final Exception exception,
@@ -121,8 +131,6 @@ public class Ex {
      * @param exception
      * @return
      * @throws
-     * @author vanlin
-     * @date 2019年3月7日 下午2:36:05
      */
     public static boolean isCauseWlbankException(final Exception exception) {
         if (exception.getCause() != null && exception.getCause() instanceof BaseException) {
