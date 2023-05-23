@@ -11,7 +11,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DhUtil {
+public class DHUtil {
 
     public static final String PUBLIC_KEY = "DHPublicKey";
     public static final String PRIVATE_KEY = "DHPrivateKey";
@@ -125,25 +125,25 @@ public class DhUtil {
         byte[] secretKey2;
 
         //初始化密钥，并生成甲方密钥对
-        Map<String, Object> keyMap1 = DhUtil.initKey();
-        publicKey1 = DhUtil.getPublicKey(keyMap1);
-        privateKey1 = DhUtil.getPrivateKey(keyMap1);
+        Map<String, Object> keyMap1 = DHUtil.initKey();
+        publicKey1 = DHUtil.getPublicKey(keyMap1);
+        privateKey1 = DHUtil.getPrivateKey(keyMap1);
         System.out.println("DH 甲方公钥: " + BytesToHex.fromBytesToHex(publicKey1));
         System.out.println("DH 甲方私钥: " + BytesToHex.fromBytesToHex(privateKey1));
 
         //乙方根据甲方公钥产生乙方密钥对
-        Map<String, Object> keyMap2 = DhUtil.initKey(publicKey1);
-        publicKey2 = DhUtil.getPublicKey(keyMap2);
-        privateKey2 = DhUtil.getPrivateKey(keyMap2);
+        Map<String, Object> keyMap2 = DHUtil.initKey(publicKey1);
+        publicKey2 = DHUtil.getPublicKey(keyMap2);
+        privateKey2 = DHUtil.getPrivateKey(keyMap2);
         System.out.println("DH 乙方公钥: " + BytesToHex.fromBytesToHex(publicKey2));
         System.out.println("DH 乙方私钥: " + BytesToHex.fromBytesToHex(privateKey2));
 
         //对于甲方，根据其私钥和乙方发过来的公钥， 生成其本地密钥secretKey1
-        secretKey1 = DhUtil.getSecretKey(publicKey2, privateKey1);
+        secretKey1 = DHUtil.getSecretKey(publicKey2, privateKey1);
         System.out.println("DH 甲方 本地密钥: " + BytesToHex.fromBytesToHex(secretKey1));
 
         //对于乙方，根据其私钥和甲方发过来的公钥，生成其本地密钥secretKey2
-        secretKey2 = DhUtil.getSecretKey(publicKey1, privateKey2);
+        secretKey2 = DHUtil.getSecretKey(publicKey1, privateKey2);
         System.out.println("DH 乙方 本地密钥: " + BytesToHex.fromBytesToHex(secretKey2));
 
         //加密

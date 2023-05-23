@@ -8,7 +8,7 @@ import java.security.interfaces.RSAPublicKey;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RsaUtil {
+public class RSAUtil {
 
     public static final String PUBLIC_KEY = "RSAPublicKey";
     public static final String PRIVATE_KEY = "RSAPrivateKey";
@@ -69,17 +69,17 @@ public class RsaUtil {
     public static final String DATA = "测试rsa非对称加密/解密";
 
     public static void main(String[] args) throws Exception {
-        Map<String, Object> keyMap = RsaUtil.initKey();
+        Map<String, Object> keyMap = RSAUtil.initKey();
 
-        RSAPublicKey rsaPublicKey = RsaUtil.getpublicKey(keyMap);
-        RSAPrivateKey rsaPrivateKey = RsaUtil.getPrivateKey(keyMap);
+        RSAPublicKey rsaPublicKey = RSAUtil.getpublicKey(keyMap);
+        RSAPrivateKey rsaPrivateKey = RSAUtil.getPrivateKey(keyMap);
         System.out.println("RSA 共钥: " + rsaPublicKey.getPublicExponent());
         System.out.println("RSA 私钥: " + rsaPrivateKey.getPrivateExponent());
 
-        byte[] rsaResult = RsaUtil.encrypt(DATA.getBytes(), rsaPublicKey);
+        byte[] rsaResult = RSAUtil.encrypt(DATA.getBytes(), rsaPublicKey);
         System.out.println(DATA + "====>>>> RSA 加密>>>>====" + BytesToHex.fromBytesToHex(rsaResult));
 
-        byte[] plainResult = RsaUtil.decrypt(rsaResult, rsaPrivateKey);
+        byte[] plainResult = RSAUtil.decrypt(rsaResult, rsaPrivateKey);
         System.out.println(DATA + "====>>>> RSA 解密>>>>====" + BytesToHex.fromBytesToHex(plainResult));
 
         System.out.println(DATA + "====>>>> RSA 解密222>>>>====" + new String(plainResult));

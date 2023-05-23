@@ -5,7 +5,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
-public class DesEde {
+public class DESEdeUtil {
     /**
      * 生成密钥
      * @throws Exception
@@ -56,12 +56,12 @@ public class DesEde {
 
     public static void main(String[] args) throws Exception {
         //获取密钥
-        byte[] key = DesEde.initKey();
+        byte[] key = DESEdeUtil.initKey();
         System.out.println("3DES 密钥 : " + BytesToHex.fromBytesToHex(key));
         //加密
-        byte[] encrypt = DesEde.encrypt3DES(DATA.getBytes(), key);
+        byte[] encrypt = DESEdeUtil.encrypt3DES(DATA.getBytes(), key);
         System.out.println(DATA + " 3DES 加密 : " + BytesToHex.fromBytesToHex(encrypt));
-        byte[] plain = DesEde.decrypt3DES(encrypt, key);
+        byte[] plain = DESEdeUtil.decrypt3DES(encrypt, key);
         System.out.println(DATA + " 3DES 解密: " + new String(plain));
     }
 }

@@ -35,6 +35,7 @@ public class Base64Util {
 
         String base64Plain = Base64Util.base64Decrypt(base64Result);
         System.out.println("DATA ========>>>base64解密===========>>>>>>> " + base64Plain);
+        System.out.println("DATA ========>>>base64解密===========>>>>>>> " + base64Plain.hashCode());
 
     }
 

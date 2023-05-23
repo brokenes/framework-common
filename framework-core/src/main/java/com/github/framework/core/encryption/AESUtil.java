@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 /**
  * AES算法
  */
-public class AesUtil {
+public class AESUtil {
     /**
      * 生成密钥
      * @throws Exception
@@ -58,14 +58,14 @@ public class AesUtil {
 
     public static void main(String[] args) throws Exception {
         //获得密钥
-        byte[] aesKey = AesUtil.initKey();
+        byte[] aesKey = AESUtil.initKey();
         System.out.println("AES 密钥 : " + BytesToHex.fromBytesToHex(aesKey));
         //加密
-        byte[] encrypt = AesUtil.encryptAES(DATA.getBytes(), aesKey);
+        byte[] encrypt = AESUtil.encryptAES(DATA.getBytes(), aesKey);
         System.out.println(DATA + " AES 加密 : " + BytesToHex.fromBytesToHex(encrypt));
 
         //解密
-        byte[] plain = AesUtil.decryptAES(encrypt, aesKey);
+        byte[] plain = AESUtil.decryptAES(encrypt, aesKey);
         System.out.println(DATA + " AES 解密 : " + new String(plain));
     }
 }
