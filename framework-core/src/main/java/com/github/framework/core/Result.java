@@ -117,6 +117,7 @@ public class Result<T> implements Message<String>, Serializable {
     }
 
 
+
     /**
      * 创建一个错误的结果集
      *
