@@ -51,3 +51,9 @@ classes
 *.prefs
 *~
 .extract
+.DS_Store
+*.mvn
+mvnw
+mvnw.cmd
+HELP.md
+
