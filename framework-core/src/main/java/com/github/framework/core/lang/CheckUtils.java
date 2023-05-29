@@ -119,7 +119,7 @@ public class CheckUtils {
      * @param message 不符合断言要抛出的异常消息
      * @param params 不符合断言要抛出的异常消息参数
      */
-    public static void notEmpty(final Collection object, final String message, final String...params) {
+    public static <E> void notEmpty(final Collection<E> object, final String message, final String...params) {
         if (CollectionUtils.isEmpty(object)) {
             throw Ex.violation(message,params);
         }
@@ -131,7 +131,7 @@ public class CheckUtils {
      * @param error 不符合断言要抛出的异常消息
      * @param params 不符合断言要抛出的异常消息参数
      */
-    public static void notEmpty(final Collection object, final IError error, final String...params) {
+    public static <E> void notEmpty(final Collection<E> object, final IError error, final String...params) {
         if (CollectionUtils.isEmpty(object)) {
             throw error.makeException(params);
         }
@@ -143,7 +143,7 @@ public class CheckUtils {
      * @param message 不符合断言要抛出的异常消息
      * @param params 不符合断言要抛出的异常消息参数
      */
-    public static void notEmpty(final Map object, final String message, final String...params) {
+    public static <K,V> void notEmpty(final Map<K,V> object, final String message, final String...params) {
         if (CollectionUtils.isEmpty(object)) {
             throw Ex.violation(message,params);
         }
@@ -155,7 +155,7 @@ public class CheckUtils {
      * @param error 不符合断言要抛出的异常消息
      * @param params 不符合断言要抛出的异常消息参数
      */
-    public static void notEmpty(final Map object, final IError error, final String...params) {
+    public static <K,V> void notEmpty(final Map<K,V> object, final IError error, final String...params) {
         if (CollectionUtils.isEmpty(object)) {
             throw error.makeException(params);
         }

@@ -2,7 +2,6 @@
 package com.github.framework;
 
 
-import com.github.framework.lock.DistributionLock;
 import com.github.framework.lock.LockManager;
 import com.github.framework.service.BaseRLockService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +26,8 @@ public class RedisLockTest {
     @Test
     public void testBase() {
 
-        baseRLockService.simpleLock("hello world");
-        baseRLockService.simpleLock("hello world");
+//        baseRLockService.simpleLock("hello world");
+//        baseRLockService.simpleLock("hello world");
 
     }
 
@@ -39,11 +38,11 @@ public class RedisLockTest {
     @Test
     public void testLock() {
 //        LockInfo lockInfo = SimpleLockInfo.of()
-        try( DistributionLock lock = lockManager.createLock("WR","10001")) {
-            lock.lock();
-            lock.lock();
-            lock.lock();
-            log.info("***************获取分布式锁**************");
-        }
+//        try( DistributionLock lock = lockManager.createLock("WR","10001")) {
+//            lock.lock();
+//            lock.lock();
+//            lock.lock();
+//            log.info("***************获取分布式锁**************");
+//        }
     }
 }

@@ -1,6 +1,8 @@
 package com.github.framework.lock.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
@@ -9,17 +11,12 @@ import java.util.List;
  *  基于spring的配置
  *
  */
-
+@Component
+@ConfigurationProperties(prefix = "lock.redis")
+@Data
 public class RedisLockProperties {
 
-    @Value("${lock.redis.servers}")
+//    @Value("${lock.redis.servers}")
     private List<String> servers;
 
-    public List<String> getServers() {
-        return servers;
-    }
-
-    public void setServers(List<String> servers) {
-        this.servers = servers;
-    }
 }

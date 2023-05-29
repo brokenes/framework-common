@@ -1,6 +1,7 @@
 package com.github.framework.lock.config;
 
 import com.github.framework.lock.LockManager;
+import com.github.framework.lock.LockProvider;
 import com.github.framework.lock.aop.DistributionLockAspect;
 import com.github.framework.lock.exception.LockException;
 import com.github.framework.lock.support.LockManagerImpl;
@@ -55,7 +56,7 @@ public class LockConfig {
 
     @Bean
     @ConditionalOnBean(RedisLockProperties.class)
-    public RedisLockProvider redisLockProvider() {
+    public LockProvider redisLockProvider() {
         RedisLockProvider redisLockProvider = new RedisLockProvider();
         return redisLockProvider;
     }
