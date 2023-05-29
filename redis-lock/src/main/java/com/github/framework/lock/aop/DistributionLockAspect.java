@@ -1,5 +1,7 @@
 package com.github.framework.lock.aop;
 
+import com.github.framework.core.lang.CustomStringUtils;
+import com.github.framework.core.reflect.ClassWrapper;
 import com.github.framework.lock.DistributionLock;
 import com.github.framework.lock.LockInfo;
 import com.github.framework.lock.LockManager;
@@ -13,8 +15,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.github.framework.common.lang.CustomStringUtils;
-import org.github.framework.common.reflect.ClassWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.expression.BeanFactoryResolver;
@@ -50,11 +50,16 @@ public class DistributionLockAspect extends ApplicationObjectSupport {
         try  {
 
             if (lock != null) {
+                if(!lock.tryLock()){
+                    throw new LockException("请误重复提交!");
+                }
+                log.info("***************获取分布式锁****************");
                 lock.lock();
             }
             return proceedingJoinPoint.proceed();
         } finally {
             if (lock != null) {
+                log.info("***************释放分布式锁****************");
                 lock.unlock();
             }
         }

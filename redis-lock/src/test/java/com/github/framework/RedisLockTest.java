@@ -28,7 +28,10 @@ public class RedisLockTest {
     public void testBase() {
 
         baseRLockService.simpleLock("hello world");
+        baseRLockService.simpleLock("hello world");
+
     }
+
 
 
 
@@ -37,6 +40,8 @@ public class RedisLockTest {
     public void testLock() {
 //        LockInfo lockInfo = SimpleLockInfo.of()
         try( DistributionLock lock = lockManager.createLock("WR","10001")) {
+            lock.lock();
+            lock.lock();
             lock.lock();
             log.info("***************获取分布式锁**************");
         }

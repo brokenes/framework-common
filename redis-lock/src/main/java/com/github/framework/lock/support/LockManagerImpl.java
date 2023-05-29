@@ -1,10 +1,10 @@
 package com.github.framework.lock.support;
 
+import com.github.framework.core.lang.CheckUtils;
 import com.github.framework.lock.*;
 import com.github.framework.lock.enums.LockProviderType;
 import com.github.framework.lock.exception.LockException;
 import lombok.extern.slf4j.Slf4j;
-import org.github.framework.common.lang.CheckUtils;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.support.ApplicationObjectSupport;

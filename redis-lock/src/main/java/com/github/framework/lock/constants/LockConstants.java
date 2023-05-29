@@ -1,7 +1,8 @@
 package com.github.framework.lock.constants;
 
+import com.github.framework.core.lang.CustomDateUtils;
 import com.github.framework.lock.enums.LockProviderType;
-import org.github.framework.common.lang.CustomDateUtils;
+
 
 public interface LockConstants {
 

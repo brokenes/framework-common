@@ -3,6 +3,7 @@ package com.github.framework.lock.support.redis;
 import com.github.framework.lock.BaseDistributionLock;
 import com.github.framework.lock.DistributionLock;
 import com.github.framework.lock.LockInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.locks.Condition;
 /**
  * 基于redisson的分布式可重入锁
  */
+@Slf4j
 public class RedisDistrbutionLock extends BaseDistributionLock implements DistributionLock {
     @Autowired
     private RLock rLock;
@@ -33,6 +35,7 @@ public class RedisDistrbutionLock extends BaseDistributionLock implements Distri
     }
 
     public boolean tryLock() {
+        log.info("尝试获取redission分布式锁");
         return this.rLock.tryLock();
     }
 

@@ -1,6 +1,7 @@
 package com.github.framework.lock.enums;
 
-import org.github.framework.common.IEnum;
+
+import com.github.framework.core.IEnum;
 
 public enum LockType implements IEnum<String> {
 

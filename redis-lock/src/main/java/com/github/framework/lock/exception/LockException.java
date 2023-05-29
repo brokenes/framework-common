@@ -1,5 +1,7 @@
 package com.github.framework.lock.exception;
-import org.github.framework.common.exception.BaseException;
+
+
+import com.github.framework.core.exception.BaseException;
 
 /**
  * 锁异常，获取锁失败要抛出此异常

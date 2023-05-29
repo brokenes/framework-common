@@ -19,7 +19,11 @@ public class BaseRLockService {
 
     @Locking(id = "'simpleLock:' + #hello",module = "baseRlock",provider = LockProviderType.REDIS)
     public void simpleLock(String hello){
-
-        System.out.println("*********************hello****************************"+hello);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("*********************hello world!!!!****************************"+hello);
     }
 }

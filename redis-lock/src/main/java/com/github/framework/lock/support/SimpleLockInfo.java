@@ -1,12 +1,12 @@
 package com.github.framework.lock.support;
 
+import com.github.framework.core.lang.CustomStringUtils;
 import com.github.framework.lock.LockInfo;
 import com.github.framework.lock.annotation.Locking;
 import com.github.framework.lock.constants.LockConstants;
 import com.github.framework.lock.enums.LockProviderType;
 import com.github.framework.lock.enums.LockType;
 import org.apache.commons.lang3.builder.ToStringStyle;
-import org.github.framework.common.lang.CustomStringUtils;
 
 public class SimpleLockInfo implements LockInfo {
 
@@ -36,6 +36,7 @@ public class SimpleLockInfo implements LockInfo {
         lock.setExpiredTime(expiredTime == null ? LockConstants.DEFAULT_EXPIRED_TIME : expiredTime);
         lock.setWaitTime(waitTime == null ? LockConstants.DEFAULT_WAIT_TIME : waitTime);
         lock.setProviderType(LockConstants.DEFAULT_LOCK_PROVIDER);
+        lock.setLockType(LockType.MUTEX);
         lock.createTime = System.currentTimeMillis();
         lock.uuid = CustomStringUtils.uuid();
         return lock;

@@ -14,6 +14,8 @@ import org.redisson.config.ClusterServersConfig;
 import org.redisson.config.Config;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.util.CollectionUtils;
@@ -82,7 +84,7 @@ public class LockTestApplication {
     }
 
     @Bean
-//    @ConditionalOnBean(RedisLockProperties.class)
+    @ConditionalOnBean(RedisLockProperties.class)
     public RedissonClient redissonClient(RedisLockProperties properties) {
         if (CollectionUtils.isEmpty(properties.getServers())) {
             throw new LockException("0001","Redis Lock Config err,Please set 'lock.redis.server=yourservers' in your spring config file!!");
@@ -98,14 +100,14 @@ public class LockTestApplication {
     }
 
     @Bean
-//    @ConditionalOnBean(RedisLockProperties.class)
+    @ConditionalOnBean(RedisLockProperties.class)
     public RedisLockProvider redisLockProvider() {
         RedisLockProvider redisLockProvider = new RedisLockProvider();
         return redisLockProvider;
     }
 
     @Bean
-//    @ConditionalOnProperty(prefix = "lock.redis",name = "enable",havingValue = "true")
+    @ConditionalOnProperty(prefix = "lock.redis",name = "enable",havingValue = "true")
     public RedisLockProperties redisLockProperties() {
         return new RedisLockProperties();
     }
