@@ -50,9 +50,9 @@ public class DistributionLockAspect extends ApplicationObjectSupport {
         try  {
 
             if (lock != null) {
-                if(!lock.tryLock()){
-                    throw new LockException("请误重复提交!");
-                }
+//                if(!lock.tryLock()){
+//                    throw new LockException("请误重复提交!");
+//                }
                 log.info("***************获取分布式锁****************");
                 lock.lock();
             }
