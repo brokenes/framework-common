@@ -264,7 +264,8 @@ public class DataPage<T> implements Serializable {
         }
     }
 	public int getEndIndex() {
-		return pageNo * pageSize;
+//		return pageNo * pageSize;
+        return  pageSize;
 	}
 
 	public int getStartIndex() {
@@ -292,7 +293,7 @@ public class DataPage<T> implements Serializable {
     public static void main(String[] args) {
         for(int i = 1;i<50;i++){
             DataPage<String> dataPage = new DataPage<String>(i,10);
-            System.out.println(dataPage.getStartIndex() + "---" + dataPage.getEndIndex());
+            System.out.println("startIndex=" + dataPage.getStartIndex() + ",endIndex=" + dataPage.getEndIndex());
             System.out.println(dataPage.pageSize);
             System.out.println("**************");
         }
